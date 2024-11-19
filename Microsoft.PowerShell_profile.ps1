@@ -309,6 +309,21 @@ $PSROptions = @{
 Set-PSReadLineOption @PSROptions
 Set-PSReadLineKeyHandler -Chord 'Ctrl+f' -Function ForwardWord
 Set-PSReadLineKeyHandler -Chord 'Enter' -Function ValidateAndAcceptLine
+Set-PSReadLineKeyHandler -Key Shift+Delete `
+    -BriefDescription RemoveFromHistory `
+    -LongDescription "Removes the content of the current line from history" `
+    -ScriptBlock {
+    param($key, $arg)
+
+    $line = $null
+    $cursor = $null
+    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+
+    $toRemove = [Regex]::Escape(($line -replace "\n", "```n"))
+    $history = Get-Content (Get-PSReadLineOption).HistorySavePath -Raw
+    $history = $history -replace "(?m)^$toRemove\r\n", ""
+    Set-Content (Get-PSReadLineOption).HistorySavePath $history
+}
 
 $scriptblock = {
     param($wordToComplete, $commandAst, $cursorPosition)
