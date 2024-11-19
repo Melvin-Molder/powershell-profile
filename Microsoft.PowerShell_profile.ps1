@@ -309,7 +309,7 @@ $PSROptions = @{
 Set-PSReadLineOption @PSROptions
 Set-PSReadLineKeyHandler -Chord 'Ctrl+f' -Function ForwardWord
 Set-PSReadLineKeyHandler -Chord 'Enter' -Function ValidateAndAcceptLine
-Set-PSReadLineKeyHandler -Key Shift+Delete `
+Set-PSReadLineKeyHandler -Chord 'Shift+Delete' `
     -BriefDescription RemoveFromHistory `
     -LongDescription "Removes the content of the current line from history" `
     -ScriptBlock {
