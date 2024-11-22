@@ -307,6 +307,7 @@ $PSROptions = @{
     }
 }
 Set-PSReadLineOption @PSROptions
+Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineKeyHandler -Chord 'Ctrl+f' -Function ForwardWord
 Set-PSReadLineKeyHandler -Chord 'Enter' -Function ValidateAndAcceptLine
 Set-PSReadLineKeyHandler -Chord 'Shift+Delete' `
