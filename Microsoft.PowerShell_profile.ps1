@@ -196,12 +196,12 @@ function Get-PubIP { (Invoke-WebRequest http://ifconfig.me/ip).Content }
 
 # Open WinUtil full-release
 function winutil {
-	irm https://christitus.com/win | iex
+	Invoke-RestMethod https://christitus.com/win | Invoke-Expression
 }
 
 # Open WinUtil pre-release
 function winutildev {
-	irm https://christitus.com/windev | iex
+	Invoke-RestMethod https://christitus.com/windev | Invoke-Expression
 }
 
 # System Utilities
@@ -256,7 +256,7 @@ function uptime {
     }
 }
 
-function reload-profile {
+function refresh-profile {
     & $profile
 }
 
@@ -555,7 +555,7 @@ $($PSStyle.Foreground.Green)winutildev$($PSStyle.Reset) - Runs the latest WinUti
 
 $($PSStyle.Foreground.Green)uptime$($PSStyle.Reset) - Displays the system uptime.
 
-$($PSStyle.Foreground.Green)reload-profile$($PSStyle.Reset) - Reloads the current user's PowerShell profile.
+$($PSStyle.Foreground.Green)refresh-profile$($PSStyle.Reset) - Reloads the current user's PowerShell profile.
 
 $($PSStyle.Foreground.Green)unzip$($PSStyle.Reset) <file> - Extracts a zip file to the current directory.
 
