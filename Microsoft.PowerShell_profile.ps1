@@ -1,7 +1,8 @@
 ### Chris Titus Tech's PowerShell profile
+### Witch I modified for my own use and preferences
 
 oh-my-posh init pwsh --config $Home\Documents\PowerShell\kali.omp.json | Invoke-Expression
-zoxide init --cmd z powershell | Out-String | Invoke-Expression
+zoxide init --cmd cd powershell | Out-String | Invoke-Expression
 Import-Module -Name Terminal-Icons
 
 Write-Host "Use 'Show-Help' to list all available functions" -ForegroundColor Yellow
@@ -90,7 +91,7 @@ function k9 ($Name) {
 
 # System Utilities
 function uptime {
-    (Get-Date) - (Get-CimClass -ClassName Win32_OperatingSystem).LastBootUpTime | Select-Object Days, Hours, Minutes, Seconds
+    (Get-Date) - (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime | Select-Object Days, Hours, Minutes, Seconds
 }
 
 function winutil {
